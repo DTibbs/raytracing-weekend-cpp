@@ -25,7 +25,7 @@ public:
   static inline float schlick(float cosine, float ref_idx) {
     float r0 = (1.0 - ref_idx) / (1.0 + ref_idx);
     r0 *= r0;
-    return r0 + (1.0 - r0) * (1.0 - pow((1 - cosine), 5.0));
+    return r0 + (1.0 - r0) * pow((1.0 - cosine), 5.0);
   }
 protected:
   float m_ref_idx;
