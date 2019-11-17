@@ -15,7 +15,7 @@
 static const uint32_t RES_X = 1024;
 static const uint32_t RES_Y = 768;
 // Number of samples for anti-aliasing
-static const uint32_t NUM_SAMPLES = 20;
+static const uint32_t NUM_SAMPLES = 22;
 
 Vec3 color(const Ray& r, Hitable* world, int depth) {
   auto rec = world->hit(r, 0.001, FLT_MAX);
@@ -154,7 +154,9 @@ int main()
   Vec3 look_at(0, 0, 0.0);
   float fov = 20.0;
   float aspect = float(RES_X) / float(RES_Y);
-  Camera cam(origin, look_at, Vec3(0, 1, 0), fov, aspect);
+  float dist_to_focus = 11.0;//(origin - look_at).length();
+  float aperture = 0.1;
+  Camera cam(origin, look_at, Vec3(0, 1, 0), fov, aspect, aperture, dist_to_focus);
   
   //generate_ppm(world, cam);
   generate_ppm_parallel(world, cam);
